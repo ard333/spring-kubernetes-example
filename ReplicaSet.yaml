@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: spring-kubernetes-example
+  labels:
+    app: spring-kubernetes-example
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: backend
+    matchExpressions:
+      - {key: tier, operator: In, values: [backend]}
+  template:
+    metadata:
+      labels:
+        app: spring-kubernetes-example
+        tier: backend
+    spec:
+      containers:
+      - name: spring-kubernetes-example
+        image: ard333.com/spring-kubernetes-example:0.0.1
+        ports:
+        - containerPort: 8080
+        env:
+          - name: username
+            valueFrom:
+              secretKeyRef:
+                name: spring-kubernetes-example
+                key: username
+          - name: password
+            valueFrom:
+              secretKeyRef:
+                name: spring-kubernetes-example
+                key: password

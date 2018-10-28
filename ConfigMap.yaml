@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-kubernetes-example
+data:
+  application.properties: |-
+    myconfig.properties1=Config 1 Updated
+    myconfig.properties2=Config 2
+    myconfig.subconfig1.properties1=Sub config 1 property 1
+    myconfig.subconfig1.properties2=Sub config 1 property 2
+    myconfig.subconfig2.properties1=Sub config 2 property 1
+    myconfig.subconfig2.properties2=Sub config 2 property 2
